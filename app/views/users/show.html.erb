@@ -14,11 +14,16 @@
   </div>
   <div class="flex flex-col w-3/5">
     <% @user.posts.each_with_index do |post, index| %>
-      <div class="flex flex-col border-2 border-black p-2 mb-2">
+      <a href="<%= user_posts_path(@user) %>" class="flex flex-col border-2 border-black p-2 mb-2">
         <h5 class="mb-2">Post <%= index + 1 %></h5>
         <p> <%= post.title %></p>
-        <p><%= post.text %></p>
-      </div>
+        <p class="mb-2"><%= post.text %></p>
+        <div class="flex w-full flex-row-reverse">
+          <p>Likes: <%= post.likes_counter %></p>
+          <p class="mr-2">Comments: <%= post.comments_counter %></p>
+        </div>
+      </a>
     <% end %>
+    <button class="border-2 border-black w-28 mx-auto mt-2">see all posts</button>
   </div>
 </div>
