@@ -16,7 +16,7 @@ class Post < ApplicationRecord
   end
 
   default_scope { order(created_at: :desc) }
-  
+
   after_create :post_counter_updates
   after_destroy :post_counter_updates
 end
