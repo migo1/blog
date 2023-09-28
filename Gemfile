@@ -5,6 +5,8 @@ ruby '3.2.2'
 
 gem 'rspec'
 
+gem 'faker'
+
 gem 'rails-controller-testing'
 
 gem 'rspec-rails'
@@ -77,3 +79,5 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
+
+gem 'tailwindcss-rails', '~> 2.0'
