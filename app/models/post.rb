@@ -15,6 +15,8 @@ class Post < ApplicationRecord
     comments.order(created_at: :desc).limit(5)
   end
 
+  default_scope { order(created_at: :desc) }
+  
   after_create :post_counter_updates
   after_destroy :post_counter_updates
 end
