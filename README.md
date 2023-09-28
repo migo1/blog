@@ -82,6 +82,7 @@ To run the project, execute the following command:
 ```sh
   create database 'blog_development'
   rails db:migrate 
+  rails db:seed
   rails s
 ```
 
