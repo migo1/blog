@@ -7,7 +7,7 @@
     <p>
       <%= @post.text %>
       <div class="flex w-full flex-row-reverse items-center">
-        <%= button_to like_user_post_path(@user, @post), method: :post, remote: true, class: 'like-button' do %>
+        <%= button_to like_user_post_path(@user, @post), method: :post, remote: true do %>
           <i class="fa fa-heart" style="color: red;" aria-hidden="true"></i>
         <% end %>
         <p class="mr-2">Likes: <%= @post.likes_counter %></p>
