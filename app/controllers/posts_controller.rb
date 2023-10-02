@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show]
 
   def index
-    @posts = @user.posts
+    @posts = Post.includes(:author, :comments, :likes)
+      .order(created_at: :desc).paginate(page: params[:page], per_page: 5) 
     respond_to do |format|
       format.html
       format.json { render json: @posts }
