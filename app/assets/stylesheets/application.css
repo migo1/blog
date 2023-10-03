@@ -18,47 +18,46 @@
  *= require font-awesome
  */
 
- .paginate-class {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
- }
+.paginate-class {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
- .paginate-class a {
-    margin: 0 5px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #000;
- }
+.paginate-class a {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #000;
+}
 
-    .paginate-class a:hover {
-        background-color: #ccc;
-    }
+.paginate-class a:hover {
+  background-color: #ccc;
+}
 
-    .paginate-class .active {
-        background-color: #ccc;
-    }
+.paginate-class .active {
+  background-color: #ccc;
+}
 
-   .paginate-class span {
-    margin: 0 5px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #000;
- }
+.paginate-class span {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #000;
+}
 
-
-    .paginate-class em {
-    margin: 0 5px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #000;
- }
+.paginate-class em {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #000;
+}
