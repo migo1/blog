@@ -3,7 +3,17 @@
 ">Create a new post</a>
 
   <div href="" class="flex items-center mb-2">
-    <div class="h-20 w-20 border-2 border-black m-4"><%= image_tag(@user.photo) %> </div>
+    <div class="h-20 w-20 border-2 border-black m-4">
+         <% if @user.photo.present? %>
+    <div class="user-photo d-flex">
+        <%= image_tag @user.photo, alt: @user.name %>
+    </div>
+<% else %>
+    <div class="user-photo placeholder">
+        No photo
+    </div>
+<% end %> 
+    </div>
     <div class="w-2/4 text-4xl flex flex-col border-2 border-black p-2">
       <p><%= @user.name %></p>
       <p class="text-sm text-right">Number of posts <%= @user.posts_counter %></p>
