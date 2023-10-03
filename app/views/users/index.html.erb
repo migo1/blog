@@ -1,4 +1,8 @@
     <ul class="w-3/4 mx-auto">
+
+     <%= link_to 'Sign In', new_user_session_path %>
+    <%= link_to 'Sign Up', new_user_registration_path %>
+    
       <% @users.each do |user| %>
         <a href="<%= user_path(user) %>" class="flex items-center mb-2">  
           <div class="h-20 w-20 border-2 border-black m-4">
