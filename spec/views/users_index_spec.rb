@@ -26,8 +26,8 @@ RSpec.feature 'User Index', type: :feature do
 
     visit users_path
 
-    expect(page).to have_content('1')
-    expect(page).to have_content('2')
+    expect(page).to have_content('User1')
+    expect(page).to have_content('User2')
   end
 
   scenario 'clicking on a user redirects to their show page' do

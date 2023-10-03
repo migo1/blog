@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show]
 
   def index
-    @posts = Post.includes(:author, :comments, :likes)
+    @posts = Post.includes(:comments)
       .where(author: params[:user_id])
       .paginate(page: params[:page], per_page: 5)
     respond_to do |format|
