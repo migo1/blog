@@ -4,7 +4,8 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.includes(:author, :comments, :likes)
-      .order(created_at: :desc).paginate(page: params[:page], per_page: 5) 
+    .where(author: params[:user_id])
+      .paginate(page: params[:page], per_page: 5) 
     respond_to do |format|
       format.html
       format.json { render json: @posts }
@@ -59,6 +60,6 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = @user.posts.find(params[:id])
+    @post = @user.posts.includes(:comments).find(params[:id])
   end
 end
