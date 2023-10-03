@@ -105,6 +105,11 @@ To run tests, run the following command:
 - GitHub: [@migo1](https://github.com/migo1)
 <!-- - LinkedIn: [username](link) -->
 
+👤 **Souad El Mansouri**
+
+- GitHub: [@githubhandle](https://github.com/souad988)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/souad-el-mansouri/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
