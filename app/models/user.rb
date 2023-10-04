@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :posts_counter, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
+  default_scope { order(created_at: :desc) }
+
   def latest_posts
     posts.order(created_at: :desc).limit(3).to_a
   end

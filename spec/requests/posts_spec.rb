@@ -9,7 +9,7 @@ RSpec.describe 'PostsController', type: :request do
       get user_posts_path(user)
       expect(response).to have_http_status(:success)
       expect(response).to render_template('posts/index')
-      expect(response.body).to include('List of Posts')
+      expect(response.body).to include('Create a new post')
     end
   end
 
@@ -28,8 +28,7 @@ RSpec.describe 'PostsController', type: :request do
       end
 
       it 'the response body includes correct placeholder text' do
-        expect(response.body).to include('Title: Sample Post')
-        expect(response.body).to include('Content: This is a sample post.')
+        expect(response.body).to include('Add a comment')
       end
     end
   end

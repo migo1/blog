@@ -8,7 +8,7 @@ RSpec.describe 'UsersController', type: :request do
       get users_path
       expect(response).to have_http_status(:success)
       expect(response).to render_template('users/index')
-      expect(response.body).to include('List of Users')
+      expect(response.body).to include('Number of posts')
     end
   end
 
@@ -25,7 +25,7 @@ RSpec.describe 'UsersController', type: :request do
         expect(response).to have_http_status(200)
       end
       it 'the response body includes correct placeholder text' do
-        expect(response.body).to include('User (1) Details')
+        expect(response.body).to include('see all posts')
       end
     end
   end
