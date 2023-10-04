@@ -12,7 +12,8 @@ require 'faker'
     name: Faker::Name.name,
     photo: "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
     bio: Faker::Lorem.paragraphs(number: 4).join("\n\n"),
-    posts_counter: rand(5..15) 
+    posts_counter: rand(5..15),
+
   )
 
   user.posts_counter.times do

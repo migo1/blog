@@ -29,7 +29,10 @@
     </div>
     <% @post.comments.each do |comment| %>
       <p><span class="font-bold
-"><%= comment.author.name%></span>: <%= comment.text%></p>
+"><%= comment.author.name%></span>: <%= comment.text%>       
+<% if can?(:delete, @post) %>
+<%= link_to 'Delete', user_post_comment_path(@user, @post, comment), class: 'delete-link', data: { turbo_method: :delete } %>
+<% end %>  </p>
     <%end%>
   </div>
 </div>
