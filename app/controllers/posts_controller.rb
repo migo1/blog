@@ -72,6 +72,6 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = @user.posts.includes(:comments).find(params[:id])
+    @post = @user.posts.includes(:comments).find_by(id: params[:id])
   end
 end
