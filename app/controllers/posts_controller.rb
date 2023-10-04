@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_user
-  before_action :set_post, only: [:show]
+  before_action :set_post, only: %i[show destroy]
 
   def index
     @posts = Post.includes(:comments)
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to user_path(current_user), notice: 'Post was successfully created.'
+      redirect_to user_path(@user), notice: 'Post was successfully created.'
     else
       puts @post.errors.full_messages
       render :new
@@ -47,6 +47,18 @@ class PostsController < ApplicationController
     end
 
     redirect_to user_post_path(@user, @post)
+  end
+
+  def destroy
+    @post.likes.destroy_all
+    @post.comments.destroy_all
+    if @post.destroy
+      flash[:notice] = 'Post was successfully deleted.'
+    else
+      flash[:alert] = 'Failed to delete Post.'
+    end
+
+    redirect_to user_posts_path(@user)
   end
 
   def post_params
