@@ -7,30 +7,35 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 
-20.times do |i|
-  user = User.create(
-    name: Faker::Name.name,
-    photo: "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
-    bio: Faker::Lorem.paragraphs(number: 4).join("\n\n"),
-    posts_counter: rand(5..15),
+# Assuming you have users with IDs 3 to 5 in your database
+user_ids = (3..5).to_a
 
-  )
+user_ids.each do |user_id|
+  user = User.find_by(id: user_id)
 
-  user.posts_counter.times do
-    Post.create(
-      author: user, 
-      title: Faker::Lorem.sentence,
-      text: Faker::Lorem.paragraphs(number: 4).join("\n\n"),
-      likes_counter: rand(0..50),
-      comments_counter: rand(0..20)
-    )
+  if user
+    user.posts_counter.times do
+      Post.create(
+        author: user, 
+        title: Faker::Lorem.sentence,
+        text: Faker::Lorem.paragraphs(number: 4).join("\n\n"),
+        likes_counter: rand(0..50),
+        comments_counter: rand(0..20)
+      )
+    end
+
+    50.times do
+      random_user = User.where(id: (3..5).to_a.sample).first
+      random_post = Post.order('RANDOM()').first
+      Comment.create(
+        user_id: random_user.id,
+        post: random_post, 
+        text: Faker::Lorem.sentence
+      )
+    end
+  else
+    puts "User with ID #{user_id} not found in the database."
   end
+end
 
-  50.times do
-  Comment.create(
-    user_id: User.order('RANDOM()').first.id,
-    post_id: Post.order('RANDOM()').first.id, 
-    text: Faker::Lorem.sentence
-  )
-end
-end
+

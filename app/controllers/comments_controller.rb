@@ -19,7 +19,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    authorize! :delete, @comment
     if @comment.destroy
       flash[:notice] = 'Comment was successfully deleted.'
     else
