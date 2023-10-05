@@ -18,7 +18,13 @@ class CommentsController < ApplicationController
     end
   end
 
+  rescue_from CanCan::AccessDenied do |_exception|
+    flash[:alert] = 'You are not authorized to delete this comment.'
+    redirect_back(fallback_location: root_path)
+  end
+
   def destroy
+    authorize! :delete, @comment
     if @comment.destroy
       flash[:notice] = 'Comment was successfully deleted.'
     else
