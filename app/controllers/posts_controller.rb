@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource :user
+  load_and_authorize_resource :post, through: :user
   before_action :set_user
   before_action :set_post, only: %i[show destroy]
 
@@ -50,8 +52,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @author = @post.author
     @post.likes.destroy_all
     @post.comments.destroy_all
+    @author.decrement!(:posts_counter)
     if @post.destroy
       flash[:notice] = 'Post was successfully deleted.'
     else
@@ -72,6 +76,6 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = @user.posts.includes(:comments).find_by(id: params[:id])
+    @post = Post.find(params[:id])
   end
 end

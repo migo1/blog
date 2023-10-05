@@ -8,8 +8,8 @@ class Ability
       can :manage, :all
     else
       can :read, :all
-      can :delete, Post, author_id: user.id
-      can :delete, Comment, user_id: user.id
+      can :manage, Post, author_id: user.id
+      can :manage, Comment, user_id: user.id
     end
   end
 end
