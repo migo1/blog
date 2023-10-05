@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource :user
+  load_and_authorize_resource :post, through: :user
   before_action :set_user
-  before_action :set_post, only: [:show]
+  before_action :set_post, only: %i[show destroy]
 
   def index
     @posts = Post.includes(:comments)
@@ -26,7 +28,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to user_path(current_user), notice: 'Post was successfully created.'
+      redirect_to user_path(@user), notice: 'Post was successfully created.'
     else
       puts @post.errors.full_messages
       render :new
@@ -49,6 +51,20 @@ class PostsController < ApplicationController
     redirect_to user_post_path(@user, @post)
   end
 
+  def destroy
+    @author = @post.author
+    @post.likes.destroy_all
+    @post.comments.destroy_all
+    @author.decrement!(:posts_counter)
+    if @post.destroy
+      flash[:notice] = 'Post was successfully deleted.'
+    else
+      flash[:alert] = 'Failed to delete Post.'
+    end
+
+    redirect_to user_posts_path(@user)
+  end
+
   def post_params
     params.require(:post).permit(:title, :text, :comments_counter, :likes_counter)
   end
@@ -60,6 +76,6 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = @user.posts.includes(:comments).find(params[:id])
+    @post = Post.find(params[:id])
   end
 end

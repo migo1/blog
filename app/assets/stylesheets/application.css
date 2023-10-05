@@ -61,3 +61,39 @@
   color: #fff;
   background-color: #000;
 }
+
+.delete-link {
+  color: red;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.message-success {
+  color: green;
+  font-weight: bold;
+}
+
+.message-error {
+  color: red;
+  font-weight: bold;
+}
+
+.message-warning {
+  color: orange;
+  font-weight: bold;
+}
+
+.message-info {
+  color: blue;
+  font-weight: bold;
+}
+
+.message-notice {
+  color: green;
+  font-weight: bold;
+}
+
+.message-alert {
+  color: red;
+  font-weight: bold;
+}

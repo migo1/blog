@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_user
   before_action :set_post
+  before_action :set_comment, only: %i[destroy]
 
   def new
     @comment = @post.comments.new
@@ -17,14 +18,34 @@ class CommentsController < ApplicationController
     end
   end
 
+  rescue_from CanCan::AccessDenied do |_exception|
+    flash[:alert] = 'You are not authorized to delete this comment.'
+    redirect_back(fallback_location: root_path)
+  end
+
+  def destroy
+    authorize! :delete, @comment
+    if @comment.destroy
+      flash[:notice] = 'Comment was successfully deleted.'
+    else
+      flash[:alert] = 'Failed to delete comment.'
+    end
+
+    redirect_to user_post_path(@user, @post)
+  end
+
   private
 
   def set_user
-    @user = current_user
+    @user = User.find(params[:user_id])
   end
 
   def set_post
     @post = Post.find(params[:post_id])
+  end
+
+  def set_comment
+    @comment = @post.comments.find(params[:id])
   end
 
   def comment_params
