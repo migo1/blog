@@ -94,3 +94,9 @@ gem 'devise', '~> 4.9'
 gem 'cancancan'
 
 gem 'rswag'
+
+# In your Gemfile
+gem 'factory_bot_rails'
+
+# In your Gemfile
+gem 'database_cleaner'
